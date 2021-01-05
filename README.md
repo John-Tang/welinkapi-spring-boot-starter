@@ -2,7 +2,7 @@
 
 ### Welink开放平台接口springboot-starter
 
-[Welink开放平台](https://open.welink.huaweicloud.com/docs/) 接口封装
+[Welink开放平台服务端](https://open.welink.huaweicloud.com/docs/) 接口调用封装
 # 使用方法
 在springboot项目的application.properties中添加welink We码或者轻应用的clientId和clientSecretKey。
 
@@ -13,7 +13,7 @@ welink.openapi.client-id=20201231090249131354656
 welink.openapi.client-secret=a19af76f-23fdf-43fe-fd32-fdf54gf54
 
 ```
-在代码中注入自动生成的Authres对象和OpenAPI对象。
+在代码中注入自动生成的AuthRes对象和OpenAPI对象。
 ```java
 @Autowired
 private OpenAPI openAPI;
@@ -21,6 +21,7 @@ private OpenAPI openAPI;
 private AuthRes authRes;
 
 void test(){
+    //获取租户信息
     TenantInfoRes   tenantInfoRes = openAPI.getTenantInfo(authRes.getAccess_token());
 }
 ```
