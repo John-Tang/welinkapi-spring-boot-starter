@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.github.wangran99.welink.api.client.autoconfigure.WelinkOpenApiAutoConfiguration,\
+  com.github.wangran99.welink.api.client.autoconfigure.ScheduleConfig
