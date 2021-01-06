@@ -13,15 +13,19 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 全局异常管理
- * @author ：Wang
- * @date ：Created in 2020/8/6 11:31
- * @description：
+ * @author ：WangRan
+ * @date ：Created in 2020/12/6 11:31
+ * @description：全局异常管理
  */
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
 
+    /**
+     * 一般Exception
+     * @param e
+     * @return
+     */
     @ExceptionHandler(Exception.class)
     public Exception handlerExceptionHello(Exception e) {
         log.error("exception" + e.getMessage(), e);
@@ -30,7 +34,6 @@ public class GlobalExceptionHandler {
 
     /**
      * 参数合法性校验异常
-     *
      * @param exception
      * @return
      */
@@ -42,7 +45,6 @@ public class GlobalExceptionHandler {
 
     /**
      * 参数合法性校验异常-类型不匹配
-     *
      * @param exception
      * @return
      */
@@ -54,7 +56,6 @@ public class GlobalExceptionHandler {
 
     /**
      * 考勤系统通用异常
-     *
      * @param e
      * @return
      */
@@ -66,7 +67,6 @@ public class GlobalExceptionHandler {
 
     /**
      * 调用welink开放平台时出现的异常处理逻辑
-     *
      * @param e
      * @return
      */
@@ -78,7 +78,6 @@ public class GlobalExceptionHandler {
 
     /**
      * 用户认证失败或者认证已过期的处理逻辑
-     *
      * @param e
      * @return
      */
@@ -88,6 +87,12 @@ public class GlobalExceptionHandler {
         return e;
     }
 
+    /**
+     * 空指针异常
+     * @param req
+     * @param e
+     * @return
+     */
     @ExceptionHandler(value = NullPointerException.class)
     public NullPointerException handlerNullPointerException(HttpServletRequest req, NullPointerException e) {
         log.error("发生空指针异常！原因是:", e);

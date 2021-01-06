@@ -9,6 +9,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 
+/**
+ * 定时器自动更新welink的token
+ * @author ：WangRan
+ */
 @Slf4j
 public class AuthorizationTimer {
     @Autowired

@@ -7,8 +7,8 @@ import okhttp3.Request;
 import org.springframework.lang.Nullable;
 
 /**
- * @author ：Wang
- * @date ：Created in 2020/8/19 17:23
+ * @author ：WangRan
+ * @date ：Created in 2020/12/19 17:23
  * @description：proxyfactory，用来动态替换retrofit的baseUrl
  */
 @Slf4j

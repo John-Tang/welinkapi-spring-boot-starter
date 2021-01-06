@@ -6,13 +6,13 @@ import com.github.wangran99.welink.api.client.openapi.model.IException;
 public enum ResultCode implements IException {
 
     /**************************
-     * 考勤模块使用统一的错误码
-     * 修改后注意同步到考勤的其他几个工程中
+     * 使用统一的错误码
+     * 修改后注意同步到其他工程中
      *************************/
 
     SUCCESS(0, "Success."),
     ErrorOperationFailed(1,"Operation failed."),
-    UserAuthFailedOrExpired(3,"user authorization failed or expired."),
+    AuthFailedOrExpired(3,"user authorization failed or expired."),
 
     //search parameter error
     SEARCH_OFFSET_OR_LIMIT_EMPTY(56120, "the parameter offset or limit cannot be null"),
@@ -73,6 +73,6 @@ public enum ResultCode implements IException {
 
     @Override
     public String toString() {
-        return "AttendanceException { code=" + this.code + ", desc=" + this.desc + "}";
+        return "Exception { code=" + this.code + ", desc=" + this.desc + "}";
     }
 }

@@ -7,8 +7,11 @@ import com.github.wangran99.welink.api.client.openapi.model.ManagerAuthRes;
 import com.github.wangran99.welink.api.client.openapi.model.UserIdInfo;
 import retrofit2.http.*;
 
+
 /**
- * web管理员页面welink认证接口
+ * @author ：WangRan
+ * @date ：Created in 2020/12/4 8:20
+ * @description：web管理员页面welink认证接口（https://open.welink.huaweicloud.com/docs）
  */
 public interface OpenManagerApi {
 
@@ -23,15 +26,22 @@ public interface OpenManagerApi {
      * @return
      */
     @POST("oauth2/v1/token")
-    @Headers({"Content-Type:application/json"})
     ManagerAuthRes managerAuthorization(@Query("code")String code, @Query("grant_type") String grant_type, @Query("client_id")String client_id,
                                         @Query("client_secret")String client_secret, @Query("redirect_uri")String redirect_uri, @Query("state")String state);
 
+    /**
+     * 查询用户角色和管理员权限
+     * @param wlk
+     * @return
+     */
     @GET("weopen/v1/isadmin")
-    @Headers({"Content-Type:application/json"})
-    IsAdminRes isadmin(@Header("x-wlk-Authorization") String wlk);
+    IsAdminRes isAdminAndRoles(@Header("x-wlk-Authorization") String wlk);
 
+    /**
+     * 查询用户id和租户id
+     * @param wlk
+     * @return
+     */
     @GET("auth/v1/userid")
-    @Headers({"Content-Type:application/json"})
     UserIdInfo getUserId(@Header("x-wlk-Authorization") String wlk);
 }
