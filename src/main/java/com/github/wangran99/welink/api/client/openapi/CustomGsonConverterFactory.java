@@ -43,7 +43,6 @@ public class CustomGsonConverterFactory extends Converter.Factory {
 
     @Override
     public Converter<?, RequestBody> requestBodyConverter(Type type, Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
-        log.error("gson:"+gson);
         TypeAdapter<?> adapter = gson.getAdapter(TypeToken.get(type));
         return new CustomGsonRequestBodyConverter<>(gson, adapter);
     }

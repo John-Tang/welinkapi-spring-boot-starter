@@ -3,6 +3,8 @@ package com.github.wangran99.welink.api.client.openapi;
 import com.github.wangran99.welink.api.client.openapi.model.*;
 import retrofit2.http.*;
 
+import java.util.List;
+
 /**
  * @author ：WangRan
  * @date ：Created in 2020/12/4 8:20
@@ -13,6 +15,7 @@ public interface OpenAPI {
 
     /**
      * welink开放平台鉴权，获取token。A租户的token不能用户获取B租户的各种信息，如人员，部门等
+     *
      * @param authReq 不同租户的传递的租户id是不同的，得到的token也是不同
      * @return
      */
@@ -22,6 +25,7 @@ public interface OpenAPI {
 
     /**
      * 获取租户信息
+     *
      * @param accessToken （不同租户提供的accessToken是不同的）
      * @return
      */
@@ -31,8 +35,9 @@ public interface OpenAPI {
 
     /**
      * 根据we码中获得authCode获取用户id和租户信息
+     *
      * @param accessToken 本we码获鉴权得到的accessToken
-     * @param authCode 免登授权码
+     * @param authCode    免登授权码
      * @return 用户id和租户id
      */
     @GET("auth/v2/userid")
@@ -40,6 +45,7 @@ public interface OpenAPI {
 
     /**
      * 轻应用鉴权
+     *
      * @param accessToken
      * @return
      */
@@ -48,6 +54,7 @@ public interface OpenAPI {
 
     /**
      * 通过用户id，电话，职工编号获取用户简略信息
+     *
      * @param accessToken
      * @param userBasicInfoReq
      * @return
@@ -57,6 +64,7 @@ public interface OpenAPI {
 
     /**
      * 根据用户ID获取详细信息
+     *
      * @param accessToken
      * @param userId
      * @return
@@ -66,6 +74,7 @@ public interface OpenAPI {
 
     /**
      * 根据用户手机号获取详细信息
+     *
      * @param accessToken
      * @param mobileNumber
      * @return
@@ -75,6 +84,7 @@ public interface OpenAPI {
 
     /**
      * 根据用户员工号获取详细信息
+     *
      * @param accessToken
      * @param corpUserId
      * @return
@@ -84,6 +94,7 @@ public interface OpenAPI {
 
     /**
      * 获取部门详情
+     *
      * @param accessToken
      * @param deptCode
      * @return
@@ -93,6 +104,7 @@ public interface OpenAPI {
 
     /**
      * 获取用户角色和权限
+     *
      * @param accessToken
      * @param userId
      * @return
@@ -102,6 +114,7 @@ public interface OpenAPI {
 
     /**
      * 添加待办事项
+     *
      * @param accessToken
      * @param addTodoTaskReq
      * @return
@@ -111,6 +124,7 @@ public interface OpenAPI {
 
     /**
      * 删除待办
+     *
      * @param accessToken
      * @param taskId
      * @return
@@ -120,6 +134,7 @@ public interface OpenAPI {
 
     /**
      * 获取子部门信息
+     *
      * @param accessToken
      * @param deptCode
      * @param recursiveflag 是否递归查询
@@ -132,6 +147,7 @@ public interface OpenAPI {
 
     /**
      * 获取部门人员列表
+     *
      * @param accessToken
      * @param deptCode
      * @param pageNum
@@ -139,10 +155,11 @@ public interface OpenAPI {
      * @return
      */
     @GET("contact/v1/user/users")
-    QueryUsernfoResPage getUsersByDeptCode(@Header("x-wlk-Authorization") String accessToken, @Query("deptCode") String deptCode, @Query("pageNo") String pageNum,@Query("pageSize") String pageSize);
+    QueryUsernfoResPage getUsersByDeptCode(@Header("x-wlk-Authorization") String accessToken, @Query("deptCode") String deptCode, @Query("pageNo") String pageNum, @Query("pageSize") String pageSize);
 
     /**
      * 获取考勤打卡信息
+     *
      * @param accessToken
      * @param req
      * @return
@@ -152,34 +169,38 @@ public interface OpenAPI {
 
     /**
      * 批量异步同步人员信息
+     *
      * @param accessToken
      * @param req
      * @return
      */
     @POST("contact/v2/users/bulk")
-    SyncUsersRes syncUsers(@Header("x-wlk-Authorization") String accessToken, @Body SyncUsersReq req);
+    List<SyncUserResItem> syncUsers(@Header("x-wlk-Authorization") String accessToken, @Body SyncUsersReq req);
 
     /**
      * 批量异步更新人员信息
+     *
      * @param accessToken
      * @param req
      * @return
      */
     @PUT("contact/v2/users/update")
-    SyncUsersRes updateUsers(@Header("x-wlk-Authorization") String accessToken, @Body SyncUsersReq req);
+    List<SyncUserResItem> updateUsers(@Header("x-wlk-Authorization") String accessToken, @Body SyncUsersReq req);
 
     /**
      * 查询异步批量同步用户的结果
+     *
      * @param accessToken
      * @param req
      * @return
      */
     @POST("contact/v1/users/status")
-    SyncUsersRes syncUserStatus(@Header("x-wlk-Authorization") String accessToken, @Body SyncUsersReq req);
+    List<SyncUserResItem> syncUserStatus(@Header("x-wlk-Authorization") String accessToken, @Body SyncUsersReq req);
 
     /**
      * 修改用户绑定手机号，此接口实时返回修改结果。
      * 同一个已开户状态用户24小时之内只允许修改手机号3次，未开户状态用户无限制。
+     *
      * @param accessToken
      * @param req
      * @return
@@ -189,15 +210,17 @@ public interface OpenAPI {
 
     /**
      * 批量异步同步部门信息
+     *
      * @param accessToken
      * @param req
      * @return
      */
     @POST("contact/v2/departments/bulk")
-    SyncDepartmentsRes syncDepartments(@Header("x-wlk-Authorization") String accessToken, @Body SyncDeptReq req);
+    List<SyncDeptResItem> syncDepartments(@Header("x-wlk-Authorization") String accessToken, @Body SyncDeptReq req);
 
     /**
      * 批量异步删除部门信息
+     *
      * @param accessToken
      * @param req
      * @return
@@ -207,24 +230,27 @@ public interface OpenAPI {
 
     /**
      * 批量异步更新部门信息
+     *
      * @param accessToken
      * @param req
      * @return
      */
     @POST("contact/v2/departments/update")
-    SyncDepartmentsRes updateDepartments(@Header("x-wlk-Authorization") String accessToken, @Body SyncDeptReq req);
+    List<SyncDeptResItem> updateDepartments(@Header("x-wlk-Authorization") String accessToken, @Body SyncDeptReq req);
 
     /**
      * 查询异步批量同步部门的结果。
+     *
      * @param accessToken
      * @param req
      * @return
      */
     @POST("contact/v2/departments/status")
-    SyncDepartmentsRes syncDepartmentStatus(@Header("x-wlk-Authorization") String accessToken, @Body SyncDeptReq req);
+    List<SyncDeptResItem> syncDepartmentStatus(@Header("x-wlk-Authorization") String accessToken, @Body SyncDeptReq req);
 
     /**
      * 该接口用于企业应用中需要消息通知的场景。通过本接口，应用可以将信息推送给WeLink端用户。
+     *
      * @param accessToken
      * @param req
      * @return

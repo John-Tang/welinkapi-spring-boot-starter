@@ -40,7 +40,7 @@ final class CustomGsonResponseBodyConverter<T> implements Converter<ResponseBody
         int code = jsonObject.get("code") == null ? 0 : jsonObject.get("code").getAsInt();// 返回的数据转为JsonObject
 //        String msg = jsonObject.get("message").getAsString();
         if (code != 0 && code != 60001 && code != 58003 && code != 47012 && code != 47009) { //查询用户不是管理员
-            OpenApiException e = new OpenApiException(code, "open api error.");
+            OpenApiException e = new OpenApiException(code, "open api error." + jsonObject.get("message").getAsString());
             throw e;
         }
 //        InputStream inputStream1 = new ByteArrayInputStream(response.getBytes());

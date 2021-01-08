@@ -8,7 +8,6 @@ import lombok.Data;
  * 统一返回数据封装
  * @author wang
  */
-@Data
 public class ResultVO {
     public final static int SUCCESS_CODE = 0;
     public final static int FAIL_CODE = 1;
@@ -40,14 +39,12 @@ public class ResultVO {
     }
 
     public static ResultVO getSuccess(Object data) {
-        ResultVO resultVO = new ResultVO(SUCCESS_CODE, "success");
-        resultVO.setData(data);
+        ResultVO resultVO = new ResultVO(SUCCESS_CODE, "success",data);
         return resultVO;
     }
 
     public static ResultVO getSuccess(Object data, String msg) {
-        ResultVO resultVO = new ResultVO(SUCCESS_CODE, msg);
-        resultVO.setData(data);
+        ResultVO resultVO = new ResultVO(SUCCESS_CODE, msg,data);
         return resultVO;
     }
 
