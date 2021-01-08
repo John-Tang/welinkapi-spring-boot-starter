@@ -3,11 +3,7 @@ package com.github.wangran99.welink.api.client.openapi.model;
 import java.util.Date;
 import lombok.Data;
 
-/**
- * @author ：Wang
- * @date ：Created in 2020/8/4 17:43
- * @description：
- */
+
 @Data
 public class UserInfoRes {
     private String userStatus;      //状态, 1：未开户，2：开户中，3：已开户，4：已销户

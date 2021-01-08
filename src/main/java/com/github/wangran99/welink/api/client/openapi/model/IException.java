@@ -14,13 +14,9 @@
 package com.github.wangran99.welink.api.client.openapi.model;
 
 /**
- * simple introduction
- * <p>
- * detailed comment
+ * 错误码类型定义
  *
- * @author y00240598 Create on 2017年6月20日
- * @see
- * @since 1.0.0
+ * @author WANGran Create on 20121年1月2日
  */
 public interface IException {
 

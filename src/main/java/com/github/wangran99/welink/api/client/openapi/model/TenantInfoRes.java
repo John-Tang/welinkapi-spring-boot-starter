@@ -1,5 +1,6 @@
 package com.github.wangran99.welink.api.client.openapi.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.Data;
 
@@ -13,8 +14,8 @@ public class TenantInfoRes {
     int tenantType;
     String companyDomainName;
     int companyScale;
-    LocalDateTime licenseStartTime;
-    LocalDateTime licenseEndTime;
+    LocalDate licenseStartTime;
+    LocalDate licenseEndTime;
     LocalDateTime creationTime;
     LocalDateTime lastUpdatedTime;
     String tenantLogo;

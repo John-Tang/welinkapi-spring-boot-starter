@@ -26,3 +26,5 @@ void test(){
 }
 ```
 更多接口封装在openAPI类中。
+
+上传到中央仓库命令:mvn clean deploy

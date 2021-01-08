@@ -1,8 +1,6 @@
 package com.github.wangran99.welink.api.client.openapi;
 
 
-
-
 import com.github.wangran99.welink.api.client.openapi.model.OpenApiException;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -33,6 +31,7 @@ final class CustomGsonResponseBodyConverter<T> implements Converter<ResponseBody
     @Override
     public T convert(ResponseBody value) throws IOException {
         String response = value.string();
+        value.close();
         log.debug(response);
         InputStream inputStream = new ByteArrayInputStream(response.getBytes());
         Reader reader1 = new InputStreamReader(inputStream);
@@ -44,14 +43,17 @@ final class CustomGsonResponseBodyConverter<T> implements Converter<ResponseBody
             OpenApiException e = new OpenApiException(code, "open api error.");
             throw e;
         }
-        InputStream inputStream1 = new ByteArrayInputStream(response.getBytes());
-        Reader reader2 = new InputStreamReader(inputStream1);
-        JsonReader jsonReader2= gson.newJsonReader(reader2);
-
-        try {
-            return adapter.read(jsonReader2);
-        } finally {
-            value.close();
-        }
+//        InputStream inputStream1 = new ByteArrayInputStream(response.getBytes());
+//        Reader reader2 = new InputStreamReader(inputStream1);
+//        JsonReader jsonReader2= gson.newJsonReader(reader2);
+        if (jsonObject.get("data") == null)
+            return adapter.fromJson(response);
+        JsonObject jsonObject1 = jsonObject.get("data").getAsJsonObject();
+        return adapter.fromJsonTree(jsonObject1);
+//        try {
+//            return adapter.read(jsonReader2);
+//        } finally {
+//            value.close();
+//        }
     }
 }
