@@ -35,6 +35,7 @@ public class UserBasicInfoRes {
     private String position;
     private IsAdminRes isAdminRes;
     TenantInfoRes tenantInfoRes;
+    DeptDetailRes deptDetailRes;
     private List<String> deptInfo;
     private List<ExtInfoItem> extInfo;
 }

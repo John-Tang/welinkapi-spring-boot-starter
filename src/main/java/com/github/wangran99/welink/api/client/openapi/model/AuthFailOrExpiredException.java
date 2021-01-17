@@ -13,4 +13,7 @@ public class AuthFailOrExpiredException extends RuntimeException{
         this.msg = iException.getDesc();
         this.code = iException.getCode();
     }
+    public AuthFailOrExpiredException() {
+        super("authorization failed or expired");
+    }
 }

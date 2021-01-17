@@ -5,12 +5,10 @@ import retrofit2.http.*;
 
 import java.util.List;
 
-/**
- * @author ：WangRan
- * @date ：Created in 2020/12/4 8:20
- * @description：welink开放平台接口（https://open.welink.huaweicloud.com/docs）
- */
 
+/**
+ * welink开放平台接口（https://open.welink.huaweicloud.com/docs）
+ */
 public interface OpenAPI {
 
     /**
