@@ -14,7 +14,7 @@ import retrofit2.Converter;
 import java.io.*;
 
 /**
- * @author ：Wang
+ * @author ：WangRan
  * @date ：Created in 2020/8/4 14:02
  * @description：
  */
@@ -43,17 +43,19 @@ final class CustomGsonResponseBodyConverter<T> implements Converter<ResponseBody
             OpenApiException e = new OpenApiException(code, "open api error." + jsonObject.get("message").getAsString());
             throw e;
         }
-//        InputStream inputStream1 = new ByteArrayInputStream(response.getBytes());
-//        Reader reader2 = new InputStreamReader(inputStream1);
-//        JsonReader jsonReader2= gson.newJsonReader(reader2);
-        if (jsonObject.get("data") == null)
+        //data为空或者有分页查询的情况
+        if (jsonObject.get("data") == null || jsonObject.get("data") != null && jsonObject.get("pageNo") != null)
             return adapter.fromJson(response);
-        JsonObject jsonObject1 = jsonObject.get("data").getAsJsonObject();
-        return adapter.fromJsonTree(jsonObject1);
-//        try {
-//            return adapter.read(jsonReader2);
-//        } finally {
-//            value.close();
-//        }
+
+
+        if (jsonObject.get("data").isJsonArray()) {
+//            log.error(jsonObject.get("data").getAsJsonArray().toString());
+
+//            log.error(jsonObject.get("data").getAsJsonArray().getAsString());
+
+            return adapter.fromJson(jsonObject.get("data").getAsJsonArray().toString());
+        }else
+            return adapter.fromJsonTree(jsonObject.get("data").getAsJsonObject());
+
     }
 }

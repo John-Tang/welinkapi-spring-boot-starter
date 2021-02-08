@@ -50,15 +50,6 @@ public interface OpenAPI {
     @GET("auth/v1/jstickets")
     JsticketsRes jsAuth(@Header("x-wlk-Authorization") String accessToken);
 
-    /**
-     * 通过用户id，电话，职工编号获取用户简略信息
-     *
-     * @param accessToken
-     * @param userBasicInfoReq
-     * @return
-     */
-    @POST("contact/v3/users/simple")
-    UserBasicInfoRes getUserBasicInfo(@Header("x-wlk-Authorization") String accessToken, @Body UserBasicInfoReq userBasicInfoReq);
 
     /**
      * 根据用户ID获取详细信息
@@ -67,7 +58,7 @@ public interface OpenAPI {
      * @param userId
      * @return
      */
-    @POST("contact/v3/users")
+    @POST("contact/v1/user/detail")
     UserBasicInfoRes getUserInfoById(@Header("x-wlk-Authorization") String accessToken, @Query("userId") String userId);
 
     /**
@@ -77,7 +68,7 @@ public interface OpenAPI {
      * @param mobileNumber
      * @return
      */
-    @POST("contact/v3/users")
+    @POST("contact/v1/user/detail")
     UserBasicInfoRes getUserInfoByMobileNumber(@Header("x-wlk-Authorization") String accessToken, @Query("mobileNumber") String mobileNumber);
 
     /**
@@ -87,7 +78,7 @@ public interface OpenAPI {
      * @param corpUserId
      * @return
      */
-    @POST("contact/v3/users")
+    @POST("contact/v1/user/detail")
     UserBasicInfoRes getUserInfoByCorpUserId(@Header("x-wlk-Authorization") String accessToken, @Query("corpUserId") String corpUserId);
 
     /**
@@ -136,12 +127,12 @@ public interface OpenAPI {
      * @param accessToken
      * @param deptCode
      * @param recursiveflag 是否递归查询
-     * @param offset
-     * @param limit
+     * @param pageNo
+     * @param pageSize
      * @return
      */
-    @GET("contact/v3/departments/list")
-    QueryDepartmentInfoResPage getSubDept(@Header("x-wlk-Authorization") String accessToken, @Query("deptCode") String deptCode, @Query("recursiveflag") int recursiveflag, @Query("offset") int offset, @Query("limit") int limit);
+    @GET("contact/v1/departments/list")
+    QueryDepartmentInfoResPage getSubDept(@Header("x-wlk-Authorization") String accessToken, @Query("deptCode") String deptCode, @Query("recursiveflag") int recursiveflag, @Query("pageNo") int pageNo, @Query("pageSize") int pageSize);
 
     /**
      * 获取部门人员列表
@@ -152,8 +143,8 @@ public interface OpenAPI {
      * @param pageSize
      * @return
      */
-    @GET("contact/v1/user/users")
-    QueryUsernfoResPage getUsersByDeptCode(@Header("x-wlk-Authorization") String accessToken, @Query("deptCode") String deptCode, @Query("pageNo") String pageNum, @Query("pageSize") String pageSize);
+    @GET("contact/v1/user/list")
+    QueryUserInfoResPage getUsersByDeptCode(@Header("x-wlk-Authorization") String accessToken, @Query("deptCode") String deptCode, @Query("pageNo") String pageNum, @Query("pageSize") String pageSize);
 
     /**
      * 获取考勤打卡信息

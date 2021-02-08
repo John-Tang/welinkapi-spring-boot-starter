@@ -7,7 +7,7 @@ import lombok.Data;
  * @description：
  */
 @Data
-public class ExtInfoItem {
+public class ExtAttrItem {
     private String keyNameCn;
     private String keyNameEn;
     private String value;

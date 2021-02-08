@@ -24,8 +24,8 @@ public class AuthorizationTimer {
     //    @Autowired
     private TenantInfoRes tenantInfoRes;
 
-    //每隔一小时鉴权一次
-    @Scheduled(fixedRateString = "3600000")
+    //每隔半小时鉴权一次
+    @Scheduled(fixedRateString = "1800000")
     public void scheduled() {
         log.info("==================>>>>>begin update token by auth timer<<<<<================");
         AuthRes authResponse = openAPI.auth(authReq);

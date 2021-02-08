@@ -2,12 +2,17 @@ package com.github.wangran99.welink.api.client.openapi.model;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class DeptDetailRes {
     String deptCode; //部门Id, Key值
     String corpDeptCode; //客户侧部门Id, Key值
+    String parentCode;//上级部门ID
+    String corpParentCode;
     String deptNameCn; //部门中文名称
     String deptNameEn;  //部门英文名称
-    String parentCode; //上级部门ID
-    String managerAccount; //部门主管(员工帐号)
+    List<String> managerId; //部门主管(员工帐号)
+    List<String>  corpManagerId;
+    Integer hasChildDept;//当前部门是否有子级部门，0表示没有子级部门，1表示有子级部门。
 }

@@ -10,10 +10,9 @@ import java.util.List;
  * @description：根据部门code查询人员信息返回值
  */
 @Data
-public class QueryUsernfoResPage {
+public class QueryUserInfoResPage {
     private int pageNo;
-    private int pages;
-    private String pageSize;
-    private int total;
-    List<UserInfoRes> data;
+    private int pageSize;
+    private int hasMore;
+    List<UserBasicInfoRes> data;
 }

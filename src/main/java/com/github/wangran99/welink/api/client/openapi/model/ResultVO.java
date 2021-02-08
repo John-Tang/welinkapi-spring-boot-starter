@@ -11,7 +11,7 @@ import lombok.Data;
 public class ResultVO {
     public final static int SUCCESS_CODE = 0;
     public final static int FAIL_CODE = 1;
-    public final static int AUTH_FAIL_OR_EXPIRED = 3; //认证失败或者认证已过期
+    public final static int AUTH_FAIL_OR_EXPIRED = 2; //认证失败或者认证已过期
 
     private int code;
     private String msg;

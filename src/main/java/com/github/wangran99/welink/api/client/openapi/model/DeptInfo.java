@@ -11,5 +11,5 @@ public class DeptInfo {
     String managerId;      // 非必填 部门主管的ID
     String valid;          // 必填   部门状态。1：有效（有效根据是否存在corpDeptCode判断新增还是更新）； 0：无效（无效表示已删除）
     String orderNo;        // 非必填 部门排序。取值范围：1~999。按数值正序排列。默认为1000。
-    int  visibleRange;     // 非必填 1、全部可见 2、仅自己可见 3、当前部门和子部门可见
+    String  visibleRange;     // 非必填 1、全部可见 2、仅自己可见 3、当前部门和子部门可见
 }

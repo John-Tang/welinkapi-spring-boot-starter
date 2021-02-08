@@ -10,8 +10,8 @@ import lombok.Data;
  */
 @Data
 public class QueryDepartmentInfoResPage {
-    private int offset;
-    private int limit;
-    private int totalCount;
-    List<DepartmentInfo> departmentInfo;
+    private int pageNo;
+    private int pageSize;
+    private int hasMore;
+    List<DeptDetailRes> data;
 }
