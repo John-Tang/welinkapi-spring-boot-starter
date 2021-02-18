@@ -21,7 +21,7 @@ public class AuthorizationTimer {
     private AuthReq authReq;
     @Autowired
     private AuthRes authRes;
-    //    @Autowired
+    @Autowired
     private TenantInfoRes tenantInfoRes;
 
     //每隔半小时鉴权一次

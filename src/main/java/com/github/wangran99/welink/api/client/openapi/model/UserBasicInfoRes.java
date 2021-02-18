@@ -20,8 +20,6 @@ public class UserBasicInfoRes {
     private String mainCorpDeptCode;                   //部门Id, Key值, 必填
     private List<String> deptCodes;
     private List<String> corpDeptCodes;
-    private String deptNameCn;
-    private String deptNameEn;
     private String mobileNumber;     //绑定手机号码, 必填
     private String avatar;
     private String employeeId;
@@ -46,5 +44,6 @@ public class UserBasicInfoRes {
     private List<String> roleIds;//当员工存在多个角色中时，设置多个角色编码
     private Map extAttr;
     TenantInfoRes tenantInfoRes;
+    DeptDetailRes deptDetailRes;
     private IsAdminRes isAdminRes;
 }

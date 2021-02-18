@@ -3,8 +3,10 @@ package com.github.wangran99.welink.api.client.openapi.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 @Data
+@Component
 public class TenantInfoRes {
     String tenantId;
     String companyNameCn;
