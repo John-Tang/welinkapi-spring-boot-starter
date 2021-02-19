@@ -3,6 +3,7 @@ package com.github.wangran99.welink.api.client.autoconfigure;
 import com.github.wangran99.welink.api.client.openapi.*;
 import com.github.wangran99.welink.api.client.openapi.model.AuthReq;
 import com.github.wangran99.welink.api.client.openapi.model.AuthRes;
+import com.github.wangran99.welink.api.client.openapi.model.TenantInfoRes;
 import com.github.wangran99.welink.api.client.properties.WelinkOpenApiProperties;
 import com.github.wangran99.welink.api.client.timer.AuthorizationTimer;
 import com.google.gson.*;
@@ -80,6 +81,12 @@ public class WelinkOpenApiAutoConfiguration {
     AuthRes authRes() {
         AuthRes res = new AuthRes();
         return res;
+    }
+
+    @Bean
+    TenantInfoRes tenantInfoRes() {
+        TenantInfoRes tenantInfoRes = new TenantInfoRes();
+        return tenantInfoRes;
     }
 
     /**

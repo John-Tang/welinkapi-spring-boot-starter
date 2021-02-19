@@ -6,6 +6,7 @@ import com.github.wangran99.welink.api.client.openapi.model.AuthReq;
 import com.github.wangran99.welink.api.client.openapi.model.AuthRes;
 import com.github.wangran99.welink.api.client.openapi.model.TenantInfoRes;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 
@@ -31,7 +32,8 @@ public class AuthorizationTimer {
         AuthRes authResponse = openAPI.auth(authReq);
         authRes.setAccess_token(authResponse.getAccess_token());
         authRes.setExpires_in(authResponse.getExpires_in());
-        tenantInfoRes = openAPI.getTenantInfo(authRes.getAccess_token());
+        TenantInfoRes tenantInfoResponse  = openAPI.getTenantInfo(authRes.getAccess_token());
+        BeanUtils.copyProperties(tenantInfoResponse,tenantInfoRes);
         log.info("===================>>>>>end update token by auth timer<<<<<=================");
     }
 

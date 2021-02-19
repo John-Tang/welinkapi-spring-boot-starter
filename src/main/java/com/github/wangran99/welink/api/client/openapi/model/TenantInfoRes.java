@@ -6,16 +6,15 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Data
-@Component
 public class TenantInfoRes {
     String tenantId;
     String companyNameCn;
     String companyNameEn;
     String companyContactName;
-    int registeredNumbers;
-    int tenantType;
+    Integer registeredNumbers;
+    Integer tenantType;
     String companyDomainName;
-    int companyScale;
+    Integer companyScale;
     LocalDate licenseStartTime;
     LocalDate licenseEndTime;
     LocalDateTime creationTime;
