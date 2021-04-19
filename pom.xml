@@ -10,9 +10,9 @@
     </parent>
     <groupId>com.github.wangran99</groupId>
     <artifactId>welinkapi-spring-boot-starter</artifactId>
-    <version>0.0.6-RELEASE</version>
+    <version>0.0.8</version>
     <packaging>jar</packaging>
-    <name>welinkapi-spring-boot-starter</name>
+    <name>welink-api-spring-boot-starter</name>
     <description>Welink open api client project for Spring Boot</description>
     <url>https://github.com/wangran99/welinkapi-spring-boot-starter</url>
 

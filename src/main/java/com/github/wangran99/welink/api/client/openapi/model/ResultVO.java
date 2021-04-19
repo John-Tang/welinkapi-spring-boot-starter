@@ -4,11 +4,15 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * 统一返回数据封装
  * @author wang
  */
+@Data
 public class ResultVO {
+
     public final static int SUCCESS_CODE = 0;
     public final static int FAIL_CODE = 1;
     public final static int AUTH_FAIL_OR_EXPIRED = 2; //认证失败或者认证已过期

@@ -8,12 +8,9 @@ public class AuthFailOrExpiredException extends RuntimeException{
     private String msg;
     private String authUrl;
 
-    public AuthFailOrExpiredException(IException iException) {
-        super();
-        this.msg = iException.getDesc();
-        this.code = iException.getCode();
-    }
     public AuthFailOrExpiredException() {
         super("authorization failed or expired");
+        this.msg = "authorization failed or expired";
+        this.code = 2; //无认证token或者token过期，详情见ResultCode.java类
     }
 }

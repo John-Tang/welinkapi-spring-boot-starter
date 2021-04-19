@@ -112,6 +112,16 @@ public interface OpenAPI {
     AddTodoTaskRes addTodoTask(@Header("x-wlk-Authorization") String accessToken, @Body AddTodoTaskReq addTodoTaskReq);
 
     /**
+     * 最新版本添加待办事项
+     *
+     * @param accessToken
+     * @param addTodoTaskReq
+     * @return
+     */
+    @POST("todo/v3/addtask")
+    AddTodoTaskRes addTodoTasknew(@Header("x-wlk-Authorization") String accessToken, @Body AddTodoTaskReq addTodoTaskReq);
+
+    /**
      * 删除待办
      *
      * @param accessToken
