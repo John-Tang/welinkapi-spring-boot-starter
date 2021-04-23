@@ -89,18 +89,22 @@ public class WelinkOpenApiAutoConfiguration {
         return tenantInfoRes;
     }
 
+    @Bean
+    HeaderInterceptor headerInterceptor(){
+        return new HeaderInterceptor();
+    }
     /**
      * 获取Retrofit单例Bean
      *
      * @return
      */
-    public Retrofit getRetrofit() {
+    public Retrofit getRetrofit(HeaderInterceptor headerInterceptor) {
         /**
          * setEndpoint("http://127.0.0.1:31111"):指定基本的URL，
          * API接口中的URL是相对于该URL的路径的，
          * 不能少了协议名，例如写成：localhost:8081就不行
          */
-        HeaderInterceptor headerInterceptor = new HeaderInterceptor();
+//        HeaderInterceptor headerInterceptor = new HeaderInterceptor();
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
@@ -118,8 +122,8 @@ public class WelinkOpenApiAutoConfiguration {
     }
 
     @Bean
-    public OpenAPI openAPI() {
-        return getRetrofit().create(OpenAPI.class);
+    public OpenAPI openAPI(HeaderInterceptor headerInterceptor) {
+        return getRetrofit(headerInterceptor).create(OpenAPI.class);
     }
 
 //    @Bean
@@ -128,8 +132,8 @@ public class WelinkOpenApiAutoConfiguration {
 //    }
 
     @Bean
-    public OpenManagerApi openManagerApi() {
-        return getRetrofit().create(OpenManagerApi.class);
+    public OpenManagerApi openManagerApi(HeaderInterceptor headerInterceptor) {
+        return getRetrofit(headerInterceptor).create(OpenManagerApi.class);
     }
 
 

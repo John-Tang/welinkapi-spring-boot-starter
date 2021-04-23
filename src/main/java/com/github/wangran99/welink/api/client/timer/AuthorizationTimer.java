@@ -32,8 +32,9 @@ public class AuthorizationTimer {
         AuthRes authResponse = openAPI.auth(authReq);
         authRes.setAccess_token(authResponse.getAccess_token());
         authRes.setExpires_in(authResponse.getExpires_in());
-        TenantInfoRes tenantInfoResponse  = openAPI.getTenantInfo(authRes.getAccess_token());
+        TenantInfoRes tenantInfoResponse  = openAPI.getTenantInfo();
         BeanUtils.copyProperties(tenantInfoResponse,tenantInfoRes);
+//        openAPI.jsAuth("asd");
         log.info("===================>>>>>end update token by auth timer<<<<<=================");
     }
 
