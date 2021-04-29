@@ -83,8 +83,8 @@ public interface OpenAPI {
      * @param deptCode
      * @return
      */
-    @GET("contact/v1/departments/{deptCode}")
-    DeptDetailRes getDeptDetail( @Path("deptCode") String deptCode);
+    @GET("contact/v2/departments/detail")
+    DeptDetailRes getDeptDetail( @Query("deptCode") String deptCode);
 
     /**
      * 获取用户角色和权限
@@ -104,14 +104,14 @@ public interface OpenAPI {
     @POST("todo/v1/addtask")
     AddTodoTaskRes addTodoTask( @Body AddTodoTaskReq addTodoTaskReq);
 
-    /**
-     * 最新版本添加待办事项
-     *
-     * @param addTodoTaskReq
-     * @return
-     */
-    @POST("todo/v3/addtask")
-    AddTodoTaskRes addTodoTasknew( @Body AddTodoTaskReq addTodoTaskReq);
+//    /**
+//     * 最新版本添加待办事项
+//     *
+//     * @param addTodoTaskReq
+//     * @return
+//     */
+//    @POST("todo/v3/addtask")
+//    AddTodoTaskRes addTodoTasknew( @Body AddTodoTaskReq addTodoTaskReq);
 
     /**
      * 删除待办
@@ -131,8 +131,16 @@ public interface OpenAPI {
      * @param pageSize
      * @return
      */
-    @GET("contact/v1/departments/list")
+    @GET("contact/v2/departments/list")
     QueryDepartmentInfoResPage getSubDept( @Query("deptCode") String deptCode, @Query("recursiveflag") int recursiveflag, @Query("pageNo") int pageNo, @Query("pageSize") int pageSize);
+
+    /**
+     * 获取父部门列表
+     *
+     * @return
+     */
+    @GET("contact/v2/departments/parent")
+    QueryDepartmentInfoResPage getFatherDepartment( @Body FatherDepartmentReq fatherDepartmentReq);
 
     /**
      * 获取部门人员列表

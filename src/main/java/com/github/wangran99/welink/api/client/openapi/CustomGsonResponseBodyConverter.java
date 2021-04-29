@@ -43,16 +43,15 @@ final class CustomGsonResponseBodyConverter<T> implements Converter<ResponseBody
             OpenApiException e = new OpenApiException(code, "open api error." + jsonObject.get("message").getAsString());
             throw e;
         }
+        //没有data，直接有分页
+        if (jsonObject.get("data") == null && jsonObject.get("limit") != null)
+            return adapter.fromJson(response);
         //data为空或者有分页查询的情况
         if (jsonObject.get("data") == null || jsonObject.get("data") != null && jsonObject.get("pageNo") != null)
             return adapter.fromJson(response);
 
 
         if (jsonObject.get("data").isJsonArray()) {
-//            log.error(jsonObject.get("data").getAsJsonArray().toString());
-
-//            log.error(jsonObject.get("data").getAsJsonArray().getAsString());
-
             return adapter.fromJson(jsonObject.get("data").getAsJsonArray().toString());
         }else
             return adapter.fromJsonTree(jsonObject.get("data").getAsJsonObject());

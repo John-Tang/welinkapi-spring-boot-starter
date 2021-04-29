@@ -22,7 +22,7 @@ private AuthRes authRes;
 
 void test(){
     //获取租户信息
-    TenantInfoRes   tenantInfoRes = openAPI.getTenantInfo(authRes.getAccess_token());
+    TenantInfoRes   tenantInfoRes = openAPI.getTenantInfo();
 }
 ```
 更多接口封装在openAPI类中。
