@@ -2,10 +2,7 @@ package com.github.wangran99.welink.api.client.openapi;
 
 
 import com.github.wangran99.welink.api.client.openapi.model.OpenApiException;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.TypeAdapter;
+import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.ResponseBody;
@@ -49,9 +46,11 @@ final class CustomGsonResponseBodyConverter<T> implements Converter<ResponseBody
         //data为空或者有分页查询的情况
         if (jsonObject.get("data") == null || jsonObject.get("data") != null && jsonObject.get("pageNo") != null)
             return adapter.fromJson(response);
+        //另一种分页的情况
+        if ( jsonObject.get("hasMore") != null)
+            return adapter.fromJson(response);
 
-
-        if (jsonObject.get("data").isJsonArray()) {
+       if (jsonObject.get("data").isJsonArray()) {
             return adapter.fromJson(jsonObject.get("data").getAsJsonArray().toString());
         }else
             return adapter.fromJsonTree(jsonObject.get("data").getAsJsonObject());

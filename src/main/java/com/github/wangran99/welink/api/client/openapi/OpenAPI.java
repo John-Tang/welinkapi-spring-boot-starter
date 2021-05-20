@@ -43,11 +43,11 @@ public interface OpenAPI {
     /**
      * 轻应用鉴权
      *
-     * @param accessToken
+     * @param
      * @return
      */
     @GET("auth/v1/jstickets")
-    JsticketsRes jsAuth(@Header("x-wlk-Authorization") String accessToken);
+    JsticketsRes jsAuth();
 
 
     /**
@@ -104,14 +104,14 @@ public interface OpenAPI {
     @POST("todo/v1/addtask")
     AddTodoTaskRes addTodoTask( @Body AddTodoTaskReq addTodoTaskReq);
 
-//    /**
-//     * 最新版本添加待办事项
-//     *
-//     * @param addTodoTaskReq
-//     * @return
-//     */
-//    @POST("todo/v3/addtask")
-//    AddTodoTaskRes addTodoTasknew( @Body AddTodoTaskReq addTodoTaskReq);
+    /**
+     * 最新版本(V3)添加待办事项
+     *
+     * @param addTodoTaskReq
+     * @return
+     */
+    @POST("todo/v3/addtask")
+    AddTodoTaskRes addTodoTaskV3( @Body AddTodoTaskReq addTodoTaskReq);
 
     /**
      * 删除待办
@@ -131,8 +131,8 @@ public interface OpenAPI {
      * @param pageSize
      * @return
      */
-    @GET("contact/v2/departments/list")
-    QueryDepartmentInfoResPage getSubDept( @Query("deptCode") String deptCode, @Query("recursiveflag") int recursiveflag, @Query("pageNo") int pageNo, @Query("pageSize") int pageSize);
+    @GET("contact/v2/department/list")
+    QueryDepartmentInfoResPage getSubDept( @Query("deptCode") String deptCode, @Query("recursiveflag") int recursiveflag, @Query("pageNo") Integer pageNo, @Query("pageSize") Integer pageSize);
 
     /**
      * 获取父部门列表
@@ -151,7 +151,7 @@ public interface OpenAPI {
      * @return
      */
     @GET("contact/v1/user/list")
-    QueryUserInfoResPage getUsersByDeptCode( @Query("deptCode") String deptCode, @Query("pageNo") String pageNum, @Query("pageSize") String pageSize);
+    QueryUserInfoResPage getUsersByDeptCode( @Query("deptCode") String deptCode, @Query("pageNo") Integer pageNum, @Query("pageSize") Integer pageSize);
 
     /**
      * 获取考勤打卡信息

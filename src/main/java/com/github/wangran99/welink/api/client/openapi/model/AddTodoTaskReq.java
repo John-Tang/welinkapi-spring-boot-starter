@@ -11,6 +11,7 @@ public class AddTodoTaskReq {
     String userNameCn;
     String userNameEn;
     String detailsUrl;
+    String detailsUrlPc;
     String appName;
     String applicantUserId;
     String applicantUserNameCn;
