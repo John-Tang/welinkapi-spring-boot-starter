@@ -8,6 +8,12 @@ import lombok.Data;
  */
 @Data
 public class PreUploadRes {
-    long fileId;
-    String uploadUrl;
+    String file_sn;
+    String upload_url;
+    String name;
+    String object_id;
+    long size;
+    String md5;
+    long created_at;
+    long modified_at;
 }

@@ -244,4 +244,31 @@ public interface OpenAPI {
     @POST("messages/v3/send")
     Void sendOfficialAccountMsg(@Body SendOfficialAccountMsgReq req);
 
+    /**
+     * 云空间获取文件上传地址
+     *
+     * @param req
+     * @return
+     */
+    @POST("clouddrive/v1/file/preupload")
+    PreUploadRes getPreUpload(@Body PreuploadReq req);
+
+    /**
+     * 云空间获取文件下载地址
+     *
+     * @param req
+     * @return
+     */
+    @POST("clouddrive/v1/file/predownload")
+    PredownloadRes getPreDownload(@Body PredownloadReq req);
+
+    /**
+     * 删除云空间的文件
+     *
+     * @param file_sn
+     * @return
+     */
+    @DELETE("clouddrive/v1/file/predownload")
+    PredownloadReq delete(@Query("file_sn")String file_sn);
+
 }

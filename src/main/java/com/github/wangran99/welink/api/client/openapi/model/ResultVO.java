@@ -1,7 +1,9 @@
 package com.github.wangran99.welink.api.client.openapi.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -11,16 +13,19 @@ import java.io.Serializable;
  * @author wang
  */
 @Data
+@AllArgsConstructor
 public class ResultVO {
-
     public final static int SUCCESS_CODE = 0;
     public final static int FAIL_CODE = 1;
     public final static int AUTH_FAIL_OR_EXPIRED = 2; //认证失败或者认证已过期
 
-    private int code;
-    private String msg;
 
+    private String msg;
+    private int code;
     private Object data;
+    @JsonProperty("error")
+    private Integer error=new Integer(0);
+
 
     public ResultVO() {
     }
@@ -77,8 +82,8 @@ public class ResultVO {
         return new ResultVO(code, errorMessage);
     }
 
-    public static ResultVO getError(IException e) {
-        return new ResultVO(e.getCode(), e.getDesc());
-    }
+//    public static ResultVO getError(IException e) {
+//        return new ResultVO(e.getCode(), e.getDesc());
+//    }
 
 }

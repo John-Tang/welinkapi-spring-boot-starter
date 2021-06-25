@@ -13,4 +13,7 @@ public class SendOfficialAccountMsgReq {
     String urlPath;
     String msgOwner;
     String createTime;
+    int msgDisplayMode;
+    int isForceTips;
+    String desktopUrlPath;
 }
