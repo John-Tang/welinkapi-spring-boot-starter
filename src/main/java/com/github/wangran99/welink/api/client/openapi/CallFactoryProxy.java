@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
 
 /**
  * @author ：WangRan
- * @date ：Created in 2020/12/19 17:23
+ * @date Created in 2020/12/19 17:23
  * @description：proxyfactory，用来动态替换retrofit的baseUrl
  */
 @Slf4j

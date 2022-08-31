@@ -3,7 +3,7 @@ package com.github.wangran99.welink.api.client.openapi;
 /**
  *
  * 常量表，主要是http header的name
- *
+ * @author johntang
  */
 
 public class Constant {
@@ -23,4 +23,8 @@ public class Constant {
     /**请求头  Authorization 中的token */
     public static final String AUTHORIZATION = "Authorization";
 
+    /**
+     * 接口超限
+     */
+    public static final int INTERFACE_OVER_LIMIT = 48503;
 }

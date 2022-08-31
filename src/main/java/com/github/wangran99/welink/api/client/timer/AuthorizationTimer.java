@@ -1,10 +1,10 @@
 package com.github.wangran99.welink.api.client.timer;
 
-
-import com.github.wangran99.welink.api.client.openapi.OpenAPI;
-import com.github.wangran99.welink.api.client.openapi.model.AuthReq;
-import com.github.wangran99.welink.api.client.openapi.model.AuthRes;
-import com.github.wangran99.welink.api.client.openapi.model.TenantInfoRes;
+import cn.hutool.core.bean.BeanUtil;
+import com.github.wangran99.welink.api.client.openapi.api.WeLinkApiV2;
+import com.github.wangran99.welink.api.client.openapi.model.AuthV2TicketsRequest;
+import com.huawei.welink.api.accesstoken.AuthV2TicketsResponse;
+import com.huawei.welink.api.tenant.TenantV1TenantsResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,24 +17,26 @@ import org.springframework.scheduling.annotation.Scheduled;
 @Slf4j
 public class AuthorizationTimer {
     @Autowired
-    private OpenAPI openAPI;
+    private WeLinkApiV2 weLinkApiV2;
     @Autowired
-    private AuthReq authReq;
+    private AuthV2TicketsRequest authV2TicketsRequest;
     @Autowired
-    private AuthRes authRes;
+    private AuthV2TicketsResponse authV2TicketsResponse;
     @Autowired
-    private TenantInfoRes tenantInfoRes;
+    private TenantV1TenantsResponse tenantV1TenantsResponse;
 
-    //每隔半小时鉴权一次
-    @Scheduled(fixedRateString = "1800000")
+    /**
+     * 每隔半小时鉴权一次
+     */
+    @Scheduled(fixedRate = 180000)
     public void scheduled() {
         log.info("==================>>>>>begin update token by auth timer<<<<<================");
-        AuthRes authResponse = openAPI.auth(authReq);
-        authRes.setAccess_token(authResponse.getAccess_token());
-        authRes.setExpires_in(authResponse.getExpires_in());
-        TenantInfoRes tenantInfoResponse  = openAPI.getTenantInfo();
-        BeanUtils.copyProperties(tenantInfoResponse,tenantInfoRes);
-//        openAPI.jsAuth("asd");
+        AuthV2TicketsResponse authResponse = weLinkApiV2.auth(authV2TicketsRequest);
+        authV2TicketsResponse.setAccessToken(authResponse.getAccessToken());
+        authV2TicketsResponse.setExpiresIn(authResponse.getExpiresIn());
+        TenantV1TenantsResponse tenantInfoResponse  = weLinkApiV2.getTenantInfo();
+        BeanUtils.copyProperties(tenantInfoResponse, tenantV1TenantsResponse);
+        BeanUtil.setFieldValue(tenantV1TenantsResponse, "data", tenantInfoResponse.getData());
         log.info("===================>>>>>end update token by auth timer<<<<<=================");
     }
 

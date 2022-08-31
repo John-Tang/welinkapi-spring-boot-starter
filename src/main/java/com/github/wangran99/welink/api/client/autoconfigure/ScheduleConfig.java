@@ -13,16 +13,20 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
 import java.util.concurrent.Executor;
 
+/**
+ *
+ * @author johntang
+ * @date 2022/08/29
+ */
 @Configuration
 @EnableScheduling
-public class ScheduleConfig implements SchedulingConfigurer, AsyncConfigurer
-{
+public class ScheduleConfig implements SchedulingConfigurer, AsyncConfigurer {
 
-    /*
+    /**
      * 并行任务
      */
-    public void configureTasks(ScheduledTaskRegistrar taskRegistrar)
-    {
+    @Override
+    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
         TaskScheduler taskScheduler = taskScheduler();
         taskRegistrar.setTaskScheduler(taskScheduler);
     }
@@ -33,8 +37,7 @@ public class ScheduleConfig implements SchedulingConfigurer, AsyncConfigurer
      * @return ThreadPoolTaskScheduler 线程池
      */
     @Bean(destroyMethod = "shutdown")
-    public ThreadPoolTaskScheduler taskScheduler()
-    {
+    public ThreadPoolTaskScheduler taskScheduler() {
         ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
         scheduler.setPoolSize(10);
         scheduler.setThreadNamePrefix("task-");
@@ -43,20 +46,20 @@ public class ScheduleConfig implements SchedulingConfigurer, AsyncConfigurer
         return scheduler;
     }
 
-    /*
+    /**
      * 异步任务
      */
-    public Executor getAsyncExecutor()
-    {
+    @Override
+    public Executor getAsyncExecutor() {
         Executor executor = taskScheduler();
         return executor;
     }
 
-    /*
+    /**
      * 异步任务 异常处理
      */
-    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler()
-    {
+    @Override
+    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return new SimpleAsyncUncaughtExceptionHandler();
     }
 }
